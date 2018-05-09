@@ -15,7 +15,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.0.1.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/>
 	</parent>
 
 	<properties>
@@ -46,5 +46,21 @@
 		</plugins>
 	</build>
 
+	<repositories>
+		<repository>
+			<id>maven-group</id>
+			<url>http://your-host:8081/repository/maven-group/</url>
+		</repository>
+	</repositories>
 
+	<distributionManagement>
+		<snapshotRepository>
+			<id>df-test-snapshots</id>
+			<url>http://localhost:8081/repository/df-test-snapshots/</url>
+		</snapshotRepository>
+		<repository>
+			<id>df-test-releases</id>
+			<url>http://localhost:8081/repository/df-test-releases/</url>
+		</repository>
+	</distributionManagement>
 </project>
