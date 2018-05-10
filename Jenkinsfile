@@ -12,6 +12,18 @@ pipeline {
                 sh './mvnw test'
             }
         }
+
+        stage("Docker build and push") {
+            steps {
+                sh './mvnw dockerfile:build dockerfile:push'
+            }
+        }
+
+        stage("Docker run") {
+            steps {
+                sh 'docker run -p 9090:9090 -t otanikotani/demo:latest'
+            }
+        }
     }
 
     post {
