@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent {label 'slave'}
     stages {
         stage("Build") {
             steps {
@@ -12,11 +12,18 @@ pipeline {
                 sh './mvnw test'
             }
         }
+
+        stage("Dockerized") {
+            agent { dockerfile true }
+            
+        }
     }
 
     post {
         always {
             echo 'Pipeline has ended'
+            archiveArtifacts '**/target/*.jar'
+            archiveArtifacts '**/target/*.jar'
             junit('**/surefire-reports/**/*.xml')
         }
         success {
