@@ -9,7 +9,7 @@ pipeline {
 
         stage("Unit Tests") {
             steps {
-                sh './mvnw test'
+                sh 'sudo ./mvnw test'
             }
         }
 
