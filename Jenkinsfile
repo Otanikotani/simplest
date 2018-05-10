@@ -12,11 +12,6 @@ pipeline {
                 sh './mvnw test'
             }
         }
-
-        stage("Dockerized") {
-            agent { dockerfile true }
-            
-        }
     }
 
     post {
