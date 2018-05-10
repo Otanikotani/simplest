@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage("Build") {
             steps {
-                sh './mvnw clean package -DskipTests'
+                sh 'sudo ./mvnw clean package -DskipTests'
             }
         }
 
@@ -13,13 +13,13 @@ pipeline {
             }
         }
 
-        stage("Docker build and push") {
+        stage("Docker build & run") {
             steps {
                 sh 'sudo ./mvnw dockerfile:build dockerfile:push'
             }
         }
 
-        stage("Docker run") {
+        stage("Docker push") {
             steps {
                 sh 'sudo docker run -p 9090:9090 -t otanikotani/demo:latest'
             }
